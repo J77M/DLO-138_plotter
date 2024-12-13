@@ -1,13 +1,13 @@
 # DLO-138_plotter
-A simple tool to parse and visualize the serial output of the DSO-138 oscilloscope with [DLO-138](https://github.com/ardyesp/DLO-138) firmware. The tool plots the signal on the oscilloscope after it was send through the serial port (via USB-TTL converter) and its Fast Fourier Transform (FFT), providing an important tool for the cheap oscilloscope DSO-138 and enabling deeper insights into the signal characteristics.
+A simple tool to parse and visualize the serial output of the DSO-138 oscilloscope with [DLO-138](https://github.com/ardyesp/DLO-138) firmware. The tool plots the signal on the oscilloscope after it was sent through the serial port (via USB-TTL converter) and its Fast Fourier Transform (FFT), providing an important tool for the cheap oscilloscope DSO-138 and enabling deeper insights into the signal characteristics.
 
-This repository is based on [DLO-138_plotter](https://github.com/HummusPrince/DLO-138_plotter) by the HummusPrince, and is published because me and some other users (see [here](https://github.com/ardyesp/DLO-138/issues/23)) were unable to run the original DLO-138_plotter on the Linux. This tool fixes this issue by better serial input reading.
+This repository is based on [DLO-138_plotter](https://github.com/HummusPrince/DLO-138_plotter) by HummusPrince, and is published because I and some other users (see [here](https://github.com/ardyesp/DLO-138/issues/23)) were unable to run the original DLO-138_plotter on Linux. This tool fixes this issue by implementing better serial input reading (using a buffer).
 
 ## Prerequisites, Installation
 
 Requirements for the tool to run are:.
  - DSO-138 (or DLO-138 modification)
- - USB-to-USB converter
+ - USB-to-TTL converter
  - [pyserial](https://pyserial.readthedocs.io/en/latest/index.html), [numpy](https://numpy.org/install/), [scipy](https://scipy.org/install/), [matplotlib](https://matplotlib.org/stable/install/index.html)
 
 
@@ -53,7 +53,7 @@ Vpp:		 170.35 mV
 Vrms:		 42.78 mV
 Freq:		 195.38 Hz
 Cycle:		 5.12 ms
-PW:		     2.57 ms
+PW:		 2.57 ms
 Duty:		 50.16 %
 ------------------------------------------------------------
 ```
@@ -62,15 +62,15 @@ Duty:		 50.16 %
 
 ![hard](figs/triangle_hard.png "hard")
 
-... we get a nice figure with zoom and saving available, same as with [DLO-138_plotter](https://github.com/HummusPrince/DLO-138_plotter). In addition we get a Furier transform of the recorded data, which is very useful in many applications (like building audio related circuits, e.g. synths).
+... we get a nice figure with zoom and saving available, same as with [DLO-138_plotter](https://github.com/HummusPrince/DLO-138_plotter). In addition, we get a Fourier transform of the recorded data, which is very useful in many applications (like building audio-related circuits, e.g. synths).
 
 ![soft](figs/triangle_soft.png "soft")
 
 
 ### Testing
-The tool was tested with the original DSO-138 without any hardware modifications, running [DLO-138](https://github.com/ardyesp/DLO-138) firmware. The tool is designed to parse and plot data only from analog channel 1, but it should be easily modified to work with all of the channels. 
+The tool was tested with the original DSO-138 without any hardware modifications, running [DLO-138](https://github.com/ardyesp/DLO-138) firmware. The tool is designed to parse and plot data only from analog channel 1, but it should be easily modified to work with all of the DLO-138 channels. 
 
-Works both on Windows (10) and on Ubunut (24.04.1 LTS).
+Works both on Windows (10) and on Ubuntu (24.04.1 LTS).
 
 
 ### Author
